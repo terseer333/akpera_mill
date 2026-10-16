@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Contact Akpera Mill{% endblock %}
+{% block content %}
+
+<!-- Contact Section -->
+<section class="py-4" style="background: var(--light-bg);">
+    <div class="container">
+        <div class="max-width-1200 mx-auto">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="color: var(--primary-brown); margin-bottom: 1rem;">Contact Us</h2>
+                <p style="color: #666; max-width: 600px; margin: 0 auto;">We'd love to hear from you. Whether you have questions about our products, need help with an order, or want to partner with us, get in touch today.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                <!-- Contact Info -->
+                <div>
+                    <h4 style="color: var(--primary-brown); margin-bottom: 1.5rem;">Get in Touch</h4>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <span style="font-size: 1.2rem; color: var(--accent-gold);">📍</span>
+                            <span style="color: var(--dark-brown);">Address</span>
+                        </div>
+                        <p style="color: #555; line-height: 1.6;">Akpera Mill Facility<br>
+                        Plot 12, Industrial Area<br>
+                        Oyingbo, Lagos, Nigeria</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <span style="font-size: 1.2rem; color: var(--accent-gold);">📞</span>
+                            <span style="color: var(--dark-brown);">Phone</span>
+                        </div>
+                        <p style="color: #555; line-height: 1.6;">+234-1-234-5678</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <span style="font-size: 1.2rem; color: var(--accent-gold);">📧</span>
+                            <span style="color: var(--dark-brown);">Email</span>
+                        </div>
+                        <p style="color: #555; line-height: 1.6;">info@akperamill.com</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <span style="font-size: 1.2rem; color: var(--accent-gold);">🌐</span>
+                            <span style="color: var(--dark-brown);">Website</span>
+                        </div>
+                        <p style="color: #555; line-height: 1.6;">www.akperamill.com</p>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <span style="font-size: 1.2rem; color: var(--accent-gold);">⏰</span>
+                            <span style="color: var(--dark-brown);">Hours</span>
+                        </div>
+                        <p style="color: #555; line-height: 1.6;">Monday - Saturday: 8AM - 6PM</p>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div>
+                    <h4 style="color: var(--primary-brown); margin-bottom: 1.5rem;">Send a Message</h4>
+                    
+                    <form style="background: var(--white); padding: 2rem; border-radius: 8px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; font-size: 0.8rem; color: var(--dark-brown); margin-bottom: 0.3rem;">Name</label>
+                                <input type="text" style="width: 100%; padding: 0.7rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label style="display: block; font-size: 0.8rem; color: var(--dark-brown); margin-bottom: 0.3rem;">Email</label>
+                                <input type="email" style="width: 100%; padding: 0.7rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;" placeholder="your@email.com">
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; font-size: 0.8rem; color: var(--dark-brown); margin-bottom: 0.3rem;">Subject</label>
+                            <input type="text" style="width: 100%; padding: 0.7rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;" placeholder="Subject">
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-size: 0.8rem; color: var(--dark-brown); margin-bottom: 0.3rem;">Message</label>
+                            <textarea style="width: 100%; padding: 0.7rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; min-height: 120px; resize: vertical;" placeholder="Your message..."></textarea>
+                        </div>
+                        
+                        <button type="submit" style="width: 100%; padding: 0.8rem; background: var(--primary-brown); color: white; border: none; border-radius: 4px; font-size: 1rem; font-weight: 500; cursor: pointer;">Send Message →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="py-3" style="background: var(--primary-brown); color: white;">
+    <div class="container">
+        <div style="text-align: center; padding: 2rem 0;">
+            <p style="margin: 0; font-size: 0.9rem;">&copy; 2026 Akpera Mill. All rights reserved.</p>
+            <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem; opacity: 0.8;">Premium rice bags, sealed at the mill, delivered to your table.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Cart - Akpera Mill{% endblock %}
+{% block content %}
+
+<!-- Cart Section -->
+<section class="py-4">
+    <div class="container">
+        {% if cart.item_count > 0 %}
+        <!-- Cart Items -->
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <div style="background: var(--white); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+                <h3 style="color: var(--primary-brown); margin-bottom: 1.5rem;">Your Cart</h3>
+                <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                    <div style="width: 80px;">Image</div>
+                    <div>Product</div>
+                    <div style="text-align: right;">Price</div>
+                    <div style="width: 100px;">Qty</div>
+                    <div style="text-align: right;">Subtotal</div>
+                </div>
+                
+                {% for item in cart.items %}
+                <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #f5f0e9;">
+                    <img src="/static/images/{{ item.name|lower|replace(' ', '-') }}-main.jpg" alt="{{ item.name }}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px;">
+                    <div>
+                        <div style="font-weight: 500; color: var(--dark-brown);">{{ item.name }}</div>
+                        <div style="font-size: 0.8rem; color: #666;">{{ item.weight }}</div>
+                    </div>
+                    <div style="font-weight: bold; color: var(--primary-brown);">{{ item.price // 100 }}</div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <button style="width: 25px; height: 25px; background: transparent; border: none; font-size: 0.8rem; cursor: pointer;">−</button>
+                        <input type="text" value="{{ item.quantity }}" style="width: 30px; text-align: center; border: none; font-size: 0.8rem;">
+                        <button style="width: 25px; height: 25px; background: transparent; border: none; font-size: 0.8rem; cursor: pointer;">+</button>
+                    </div>
+                    <div style="font-weight: bold; color: var(--primary-brown);">{{ item.price // 100 * item.quantity }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Cart Summary -->
+        <div style="background: var(--white); border-radius: 8px; padding: 2rem; margin-top: 2rem;">
+            <h3 style="color: var(--primary-brown); margin-bottom 1.5rem;">Order Summary</h3>
+            
+            <div class="row" style="justify-content: space-between;">
+                <span>Subtotal</span>
+                <span>₦{{ cart.total_price // 100 }}</span>
+            </div>
+            
+            <div class="row">
+                <span>Delivery Fee</span>
+                <span>₦5,000</span>
+            </div>
+            
+            <div class="row-total" style="border-top: 1px solid #eee; padding-top: 1rem; margin-top: 1rem;">
+                <span>Total</span>
+                <span style="font-size: 1.3rem; color: var(--primary-brown);">₦{{ cart.total_price // 100 + 5000 }}</span>
+            </div>
+            
+            <div style="margin: 2rem 0; padding: 1rem; background: var(--cream); border-radius: 4px;">
+                <p style="font-size: 0.85rem; color: var(--dark-brown);">Delivery to Lagos</p>
+                <p style="font-size: 0.8rem; color: #666;">Estimated 2–4 business days after payment</p>
+            </div>
+            
+            <button style="width: 100%; padding: 1rem; background: var(--primary-brown); color: white; border: none; border-radius: 4px; font-size: 1rem; font-weight: 500; cursor: pointer;">
+                Proceed to Checkout
+            </button>
+        </div>
+        
+        {% else %}
+        <!-- Empty Cart -->
+        <div style="text-align: center; padding: 4rem 2rem; color: #666;">
+            <div style="width: 100px; height: 100px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">
+                🛒
+            </div>
+            <h3 style="margin-bottom: 0.5rem;">Your cart is empty</h3>
+            <p style="margin-bottom: 1.5rem;">Explore our sealed rice bags and find your family's favourite.</p>
+            <a href="/catalog" style="color: var(--primary-brown); text-decoration: underline;">Browse Rice Bags →</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

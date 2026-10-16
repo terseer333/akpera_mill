@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Checkout Review - Akpera Mill{% endblock %}
+{% block content %}
+
+<!-- Checkout Step -->
+<section class="checkout-step">
+    <div class="container">
+        <h2>Order Review</h2>
+        <p style="color: #666; margin-bottom: 2rem; font-size: 0.9rem;">Check the details. Then you're all set.</p>
+        
+        <!-- Order Details -->
+        <div style="background: var(--white); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--primary-brown); margin-bottom: 1rem;">Delivery</h4>
+                    <p style="font-size: 0.9rem; color: #555; line-height: 1.6;">
+                        <strong>Delivery Address:</strong> {{ delivery_address or 'Not specified' }}<br>
+                        <strong>Method:</strong> Standard delivery · ₦5,000<br>
+                        <strong>Estimated:</strong> 2–4 business days after payment
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary-brown); margin-bottom: 1rem;">Payment</h4>
+                    <p style="font-size: 0.9rem; color: #555; line-height: 1.6;">
+                        <strong>Payment Method:</strong> {{ payment_method or 'Not specified' }}<br>
+                        <strong>Card:</strong> Example ending in ••••<br>
+                        <strong>Email:</strong> example@example.com
+                    </p>
+                </div>
+            </div>
+            
+            <div style="padding-top: 1rem; border-top: 1px solid #eee;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Subtotal</span>
+                    <span>₦{{ subtotal // 100 }}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Delivery Fee</span>
+                    <span>₦5,000</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--primary-brown); font-weight: 500;">
+                    <span>Discount</span>
+                    <span>₦0</span>
+                </div>
+                <hr style="margin: 1rem 0;">
+                <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; color: var(--primary-brown);">
+                    <span>Total</span>
+                    <span>₦{{ total // 100 }}</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Order Summary Items -->
+        <div style="background: var(--white); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+            <h4 style="color: var(--primary-brown); margin-bottom: 1.5rem;">Items</h4>
+            <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+                <div style="width: 60px;">Image</div>
+                <div>Product</div>
+                <div style="text-align: right;">Subtotal</div>
+            </div>
+            
+            {% for item in items %}
+            <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid #f5f0e9;">
+                <img src="/static/images/{{ item.name|lower|replace(' ', '-') }}-main.jpg" alt="{{ item.name }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                <div>
+                    <div style="font-weight: 500; color: var(--dark-brown);">{{ item.name }}</div>
+                    <div style="font-size: 0.8rem; color: #666;">{{ item.weight }}</div>
+                </div>
+                <div style="font-weight: bold; color: var(--primary-brown);">{{ item.price // 100 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Action Buttons -->
+        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+            <a href="/checkout/payment" style="padding: 0.8rem 1.5rem; background: transparent; color: var(--primary-brown); border: 2px solid var(--primary-brown); border-radius: 4px; font-size: 0.9rem; font-weight: 500; text-decoration: none;">
+                ← Change Payment
+            </a>
+            <button style="padding: 0.8rem 2rem; background: var(--primary-brown); color: white; border: none; border-radius: 4px; font-size: 1rem; font-weight: 500; cursor: place;">Place Order →</button>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Akpera Mill{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Akpera Mill<span>.</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/catalog">Catalog</a></li>
+                {% if 'cart_items' in session and session.cart_items %}
+                <li><a href="/cart">Cart <span class="badge" id="cart-badge">{{ session.cart_items|length }}</span></a></li>
+                {% else %}
+                <li><a href="/cart">Cart</a></li>
+                {% endif %}
+            </ul>
+            
+            <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" onclick="closeMenu()">&times;</button>
+        <ul class="nav-links" style="flex-direction: column;">
+            <li><a href="/">Home</a></li>
+            <li><a href="/catalog">Catalog</a></li>
+            <li><a href="/cart">Cart</a></li>
+            <li><a href="/checkout/delivery">Checkout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div style="background: var(--cream); color: var(--dark-brown); padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-footer">
+                    <h3>Akpera Mill</h3>
+                    <p>Clean rice. Better lives.</p>
+                    <p>Premium rice bags, carefully milled and sealed at our facility in Nigeria.</p>
+                </div>
+                <div class="col-footer">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/catalog">Catalog</a></li>
+                        <li><a href="/product/premium-long-grain">Product Detail</a></li>
+                    </ul>
+                </div>
+                <div class="col-footer">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-footer">
+                    <h3>Info</h3>
+                    <ul>
+                        <li><a href="#">Delivery Policy</a></li>
+                        <li><a="#">Returns</a></li>
+                        <li><a="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Akpera Mill. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.add('active');
+        }
+        
+        function closeMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+        }
+        
+        // Cart badge update
+        document.addEventListener('DOMContentLoaded', function() {
+            const badge = document.getElementById('cart-badge');
+            if (badge) {
+                // Will be updated by AJAX calls
+            }
+        });
+    </script>
+</body>
+</html>
