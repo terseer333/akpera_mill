@@ -1,0 +1,47 @@
+:root {
+  /* Colors - Akpera Mill Brand */
+  --navy: #0B3B68;
+  --deep-navy: #082B4C;
+  --gold: #D9A323;
+  --green: #4B8B45;
+  --background: #F5F8FA;
+  --white: #FFFFFF;
+  --text: #172B42;
+  
+  /* Semantic */
+  --success: #2E7D4F;
+  --warning: #C98A00;
+  --error: #C0392B;
+  --info: #2B6CB0;
+  
+  /* Spacing scale (4px) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 50px;
+  
+  /* Typography scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  
+  --font-family: 'Inter', 'Manrope', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
