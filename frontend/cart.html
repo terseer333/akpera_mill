@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Akpera Mill</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Akpera Mill<span>.</span></a>
+            <button class="menu-btn">☰</button>
+            <a href="#" style="color: var(--primary-brown); font-weight: 500; margin-left: 1rem;">Cart <span class="badge" id="cart-badge">0</span></a>
+        </div>
+    </nav>
+
+    <main style="max-width: 800px; margin: 80px auto; padding: 0 2rem;">
+        <div class="card">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-brown);">Your Cart</h2>
+            
+            <div id="cartEmpty" style="text-align: center; padding: 4rem 2rem; color: #666;">
+                <div style="width: 80px; height: 80px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 3rem;">🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Explore our sealed rice bags and find your family's favourite.</p>
+                <a href="index.html" style="color: var(--primary-brown); text-decoration: underline; display: block; margin-top: 1rem;">Browse Rice Bags →</a>
+            </div>
+            
+            <div id="cartItems" style="display: none; padding: 1rem 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+                <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid #f5f0e9;">
+                    <div style="width: 60px;">Image</div>
+                    <div>Product</div>
+                    <div style="text-align: right;">Price</div>
+                </div>
+                
+                <!-- Cart items will be inserted by JS -->
+                
+                <div style="padding: 1rem 0; border-top: 1px solid #eee;">
+                    <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; align-items: center; padding: 1rem 0; border-top: 1px solid #f5f0e9;">
+                        <div style="width: 60px;">&nbsp;</div>
+                        <div>Subtotal</div>
+                        <div style="text-align: right; font-weight: bold; color: var(--primary-brown);">₦0</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="cartSummary" style="background: var(--white); padding: 1.5rem; margin: 1rem 0; border-radius: 4px; display: none;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Subtotal</span>
+                    <span>₦0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Delivery Fee</span>
+                    <span>₦5,000</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-top: 1px solid #eee; padding-top: 0.5rem; margin-top: 0.5rem; font-weight: bold; color: var(--primary-brown);">
+                    <span>Total</span>
+                    <span>₦5,000</span>
+                </div>
+                <button style="width: 100%; padding: 0.8rem; background: var(--primary-brown); color: white; border: none; border-radius: 4px; font-size: 1rem; font-weight: 500; margin-top: 1rem;">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <footer style="margin-top: 0;">
+        <div style="text-align: center; padding: 2rem; background: var(--primary-brown); color: white;">
+            <p>&copy; 2026 Akpera Mill</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check localStorage for cart
+            const cart = JSON.parse(localStorage.getItem('akperaCart')) || [];
+            const cartEmpty = document.getElementById('cartEmpty');
+            const cartItems = document.getElementById('cartItems');
+            const cartSummary = document.getElementById('cartSummary');
+            const cartBadge = document.getElementById('cart-badge');
+            
+            if (cart.length > 0) {
+                cartEmpty.style.display = 'none';
+                cartItems.style.display = 'block';
+                cartSummary.style.display = 'block';
+                cartBadge.textContent = cart.length;
+                
+                // Render cart items
+                const itemsContainer = document.querySelector('.cart-items');
+                itemsContainer.innerHTML = '';
+                
+                let subtotal = 0;
+                
+                cart.forEach((item, index) => {
+                    const price = item.price || 85000; // Default price
+                    const quantity = item.quantity || 1;
+                    subtotal += price * quantity;
+                    
+                    const div = document.createElement('div');
+                    div.className = 'cart-item';
+                    div.innerHTML = `
+                        <div style="width: 60px;">&nbsp;</div>
+                        <div>${item.name || 'Premium Long Grain Rice'}</div>
+                        <div style="text-align: right;">₦${price}</div>
+                    `;
+                    itemsContainer.appendChild(div);
+                });
+                
+                document.querySelector('.cart-items .summary-row:last-child span:last-child').textContent = `₦${subtotal}`;
+                document.querySelector('.cart-items .summary-row.total span:last-child').textContent = `₦${subtotal + 5000}`;
+            } else {
+                cartEmpty.style.display = 'block';
+                cartItems.style.display = 'none';
+                cartSummary.style.display = 'none';
+                cartBadge.textContent = '0';
+            }
+        });
+    </script>
+</body>
+</html>
